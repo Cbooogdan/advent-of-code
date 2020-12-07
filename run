@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+let fileArg = process.argv[2];
+if (fileArg.endsWith('.')) {
+  fileArg = fileArg.substr(0, fileArg.length - 1);
+}
+if (!fileArg.endsWith('.js')) {
+  fileArg += '.js';
+}
+
+global.loadInput = () => {
+  const input = path.resolve(__dirname, path.dirname(fileArg), 'input.in');
+  if (fs.existsSync(input)) return fs.readFileSync(input, 'utf8');
+  throw new Error('Failed to find input file for current run');
+};
+
+String.prototype.lines = function () {
+  return this.trim().split('\n');
+};
+
+String.prototype.blocks = function () {
+  return this.trim().split('\n\n');
+};
+
+require(path.resolve(__dirname, fileArg));
