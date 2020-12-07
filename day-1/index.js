@@ -1,6 +1,6 @@
 /*
   Title: Day one
-  URL for instrucitons: https://adventofcode.com/2020/day/1
+  URL for instructions: https://adventofcode.com/2020/day/1
 */
 
 let array = global.loadInput().lines();
