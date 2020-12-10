@@ -29,7 +29,20 @@ const puzzle1 = () => {
     }
   }
 };
-console.log(puzzle1());
+let invalidNumber = parseInt(puzzle1());
+console.log(invalidNumber);
 
 // Puzzle 2
-
+for (let i = 0; i < input.length; i++) {
+  let j = i;
+  let sum = 0;
+  while (j < input.length && sum < invalidNumber) {
+    sum += parseInt(input[j]);
+    j++;
+  }
+  if (sum === invalidNumber) {
+    const numbers = input.slice(i, j).map(element => parseInt(element)).sort( (a,b ) => a - b );
+    console.log(numbers[0] + numbers[numbers.length - 1]);
+    break;
+  }
+}
