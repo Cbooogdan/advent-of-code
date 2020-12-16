@@ -17,14 +17,19 @@ for (let index = 1; index < input.length; index++ ) {
 console.log(differencesCounter[0] * differencesCounter[2]);
 
 // Puzzle 2
-let setOfArrangements = new Set();
-setOfArrangements.add(input);
-do {
-  setOfArrangements.forEach(function(value) {
-    console.log('1');
-    return;
-  });
-  return;
-  console.log('2');
-} while (false);
-console.log(differencesCounter[0] * differencesCounter[2]);
+let arrangements = {};
+function find(i) {
+  if (arrangements[i]) return arrangements[i];
+  if (i === input.length - 1) return 1;
+  const currrent = input[i];
+  const test1 = input[i + 1];
+  const test2 = input[i + 2];
+  const test3 = input[i + 3];
+  let t = 0;
+  if (test1 - currrent <= 3) t += find(i + 1);
+  if (test2 - currrent <= 3) t += find(i + 2);
+  if (test3 - currrent <= 3) t += find(i + 3);
+  arrangements[i] = t;
+  return t;
+}
+console.log(find(0));
